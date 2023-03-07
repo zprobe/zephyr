@@ -1,0 +1,55 @@
+# Atmel SAM3U MCU series
+
+# Copyright (c) 2023 Chen Xingyu <hi@xingrz.me>
+# Copyright (c) 2017 Justin Watson
+# Copyright (c) 2016 Intel Corporation.
+# Copyright (c) 2014-2015 Wind River Systems, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+choice
+	prompt "Atmel SAM3U MCU Selection"
+	depends on SOC_SERIES_SAM3U
+
+	config SOC_PART_NUMBER_SAM3U1C
+		bool "SAM3U1C"
+	config SOC_PART_NUMBER_SAM3U1E
+		bool "SAM3U1E"
+	config SOC_PART_NUMBER_SAM3U2C
+		bool "SAM3U2C"
+	config SOC_PART_NUMBER_SAM3U2E
+		bool "SAM3U2E"
+	config SOC_PART_NUMBER_SAM3U4C
+		bool "SAM3U4C"
+	config SOC_PART_NUMBER_SAM3U4E
+		bool "SAM3U4E"
+endchoice
+
+if SOC_SERIES_SAM3U
+
+config SOC_ATMEL_SAM3U_PLLA_MULA
+	hex
+	default 0x07
+	help
+	  This is the multiplier (MULA) used by the PLL.
+	  The processor clock is (MAINCK * (MULA + 1) / DIVA).
+
+	  Board config file can override this settings
+	  for a particular board.
+
+	  With default of MULA == 7, and DIVA == 1,
+	  PLL is running at 8 times of main clock.
+
+config SOC_ATMEL_SAM3U_PLLA_DIVA
+	hex
+	default 0x01
+	help
+	  This is the divider (DIVA) used by the PLL.
+	  The processor clock is (MAINCK * (MULA + 1) / DIVA).
+
+	  Board config file can override this settings
+	  for a particular board.
+
+	  With default of MULA == 7, and DIVA == 1,
+	  PLL is running at 8 times of main clock.
+
+endif # SOC_SERIES_SAM3U

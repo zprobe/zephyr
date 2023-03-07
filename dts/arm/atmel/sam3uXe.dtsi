@@ -1,0 +1,29 @@
+/*
+ * Copyright (c) 2023 Chen Xingyu <hi@xingrz.me>
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+{
+	soc {
+		usart3: usart@4009c000 {
+			compatible = "atmel,sam-usart";
+			reg = <0x4009c000 0x130>;
+			interrupts = <16 0>;
+			peripheral-id = <16>;
+			status = "disabled";
+		};
+	};
+};
+
+&pinctrl {
+	pioc: pio@400e1000 {
+		compatible = "atmel,sam-gpio";
+		reg = <0x400e1000 0x190>;
+		interrupts = <12 1>;
+		peripheral-id = <12>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		#atmel,pin-cells = <2>;
+	};
+};
